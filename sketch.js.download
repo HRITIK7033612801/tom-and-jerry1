@@ -1,0 +1,62 @@
+
+function preload() {
+    //load the images here
+    bgImg=loadImage("images/garden.png");
+    catImg=loadImage("images/cat1.png");
+    mouseImg=loadImage("images/mouse1.png");
+    mouse2=loadAnimation("images/mouse2.png","images/mouse3.png");
+ catmoving=loadAnimation("images/cat2.png","images/cat3.png");
+ finalCat=loadAnimation("images/cat4.png");
+ mouse3=loadAnimation("images/mouse4.png");
+
+}
+
+function setup(){
+    createCanvas(1000,800);
+    //create tom and jerry sprites here
+  mouse=createSprite(50,600);
+  mouse.addImage(mouseImg);
+  mouse.scale=0.1;
+ 
+  cat1=createSprite(700,600);
+  cat1.addImage(catImg);
+  cat1.scale=0.17;
+}
+
+function draw() {
+
+    background(bgImg);
+
+    //Write condition here to evalute if tom and jerry collide
+if(cat1.x - mouse.x < (cat1.width-mouse.width)/2){
+    cat1.addAnimation("final",finalCat);
+    cat1.changeAnimation("final");
+    cat=createSprite(200,600);
+    cat.addAnimation("final",finalCat);
+     cat.scale=0.17
+     cat1.velocityX=0;
+     cat.x=150;
+     cat1.x=cat.x;
+     
+     mouse.addAnimation("last",mouse3)
+     mouse.changeAnimation("last");
+}
+    drawSprites();
+}
+
+
+function keyPressed(){
+
+  //For moving and changing animation write code here
+if(keyCode===LEFT_ARROW){
+    cat1.addAnimation("moving",catmoving);
+    cat1.changeAnimation("moving");
+    frameDelay=2;
+    cat1.velocityX=-5;
+    cat1.frameDelay=25;
+    mouse.addAnimation("dancing",mouse2) ;
+    mouse.changeAnimation("dancing");
+
+}
+
+}
